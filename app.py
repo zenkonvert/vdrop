@@ -129,6 +129,25 @@ def health():
     return jsonify({"status": "ok"})
 
 
+@app.route("/ffmpeg-test")
+def ffmpeg_test():
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["ffmpeg", "-version"],
+            capture_output=True,
+            text=True
+        )
+        return f"<pre>{result.stdout}\n{result.stderr}</pre>"
+    except Exception as e:
+        return f"ERROR: {e}"
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
