@@ -4,7 +4,7 @@
     "builder": "RAILPACK"
   },
   "deploy": {
-    "aptPackages": ["ffmpeg"],
+    "aptPackages": ["ffmpeg", "python311"],
     "startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 300"
   }
 }
